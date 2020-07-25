@@ -1,8 +1,19 @@
 <html>
     <head>
+        <script>
+            function ejecutaforma(){
+                window.location.href = "http://127.0.0.1:5000/usuario";
+            }
+        </script>
     </head>
     <body>
         index
         <img src="static/audi.jpg" />
+        {{valores.titulo}}
+        <ul>
+        {% for persona in valores.usuarios -%}
+            <li onclick="ejecutaforma()"> {{persona.id}} {{ persona.nombre }}</li>
+        {% endfor %}
+        </ul>
     </body>
 </html>
