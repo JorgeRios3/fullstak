@@ -1,0 +1,22 @@
+pip install flask
+pip install flask_cors
+
+WSGI server = Web Server Gateway Interface
+
+http status
+https://developer.mozilla.org/es/docs/Web/HTTP/Status
+
+mas utilizados
+200 = ok
+400 = bad request
+403 = forbiden
+404 = not found
+405 = Method Not Allowed
+
+
+sqlalchemy
+pip install SQLAlchemy
+pip install PyMySQL
+
+privilegios en base de datos
+GRANT ALL PRIVILEGES ON *.*  TO 'jorge.rios'@'localhost';

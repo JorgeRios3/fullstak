@@ -1,0 +1,125 @@
+crear ambiente virtual
+virtualenv -p /Library/Frameworks/Python.framework/Versions/3.7/bin/python3 ambiente
+
+instalar maria db
+osx
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
+windows
+
+https://mariadb.com/downloads/
+
+linux
+https://www.vultr.com/docs/install-mariadb-on-ubuntu-14-04
+
+workbench
+https://dev.mysql.com/downloads/workbench/
+
+correr servidor
+mysql.server start
+
+checar status en linux >= 18.04
+sudo systemctl status mariadb
+
+
+entrar a mariadb mac
+mysql  || mariadb -u jorge.rios -p
+
+windows
+abrir el cliente mysqclient
+
+linux 
+sudo mariadb -u root
+
+tipos de datos
+int, float, char, varchar, date, datetime, bigfloat, timestamp, boolean, double, json 
+
+tipo de relaciones:
+uno a uno, uno a muchos, muchos a muchos
+
+seleccionar base de datos
+use *database*
+
+
+mostrar base de datos
+SHOW DATABASES;
+
+mostrar tablas
+SHOW TABLES;
+
+motrar informacion de una tabla
+DESCRIBE *tabla*;
+
+crear tabla
+CREATE TABLE viaje (
+     id INT NOT NULL AUTO_INCREMENT,
+     name CHAR(30) NOT NULL,
+     PRIMARY KEY (id)
+ );
+
+renombrar tabla
+RENAME TABLE prueba.persona TO prueba.personas;
+
+agregar columna
+ALTER TABLE persona ADD COLUMN edad INT
+
+quitar columna
+ALTER TABLE persona DROP COLUMN edad
+
+borrar tabla
+drop *table*
+
+
+crear tabla con foreign key
+create table viaje (id int NOT NULL AUTO_INCREMENT, nombre CHAR(50), 
+apellido_paterno CHAR(30), PRIMARY KEY (id), persona_id INT NOT NULL, 
+CONSTRAINT `fk_viaje_persona` FOREIGN KEY (persona_id) 
+REFERENCES persona (id) ON DELETE CASCADE ON UPDATE RESTRICT);
+
+crear tabla pagos;
+
+
+#selects
+
+una sola condicion
+select * from personas where nombre='arrtur';
+
+double condicion
+select * from personas where nombre='arrtur' and edad=25;
+
+insert
+insert into pagos (total, persona_id) values (500.00, 6);
+#updates
+update personas set nombre='karla' where nombre='arrtur' and edad=25;
+2 campos
+update personas set nombre='karlaa', edad=30  where nombre='karla' and edad=25;
+
+
+#DELETE
+delete from personas where id=4;
+delete en lista de ids
+delete from personas where id in (2,3);
+
+
+#joins
+normal
+select * from personas join pagos on personas.id=pagos.persona_id;
+left join
+select * from personas left join pagos on personas.id=pagos.persona_id;
+right join
+select * from personas right join pagos on personas.id=pagos.persona_id;
+
+install mariadb en python
+pip install mariadb
+
+import mariadb
+conn = mariadb.connect(user="jorge.rios", password="Macros3", host="localhost", port=3306, database="prueba")
+cur = conn.cursor()
+cur.execute("select * from personas");
+
+#para imprimirlos
+for x in cur:
+  print(x)
+
+
+
+
