@@ -44,17 +44,26 @@ def main():
 
 @app.route('/usuario', methods=['GET', 'POST', 'PUT'])
 def usuario():
+    is_update = False
+    val = request.query_string.decode('utf-8')
+    if request.query_string:
+        is_update = val[-1]
     if request.method == "POST":
-        #print("entro en metodo post")
-        print(request.form)
-        nombre = request.form.get("nombre")
-        edad = request.form.get("edad")
-        session.execute("insert into personas (nombre, edad) values ('{}', '{}')".format(nombre, edad))
-        session.commit()
+        if is_update:
+            ombre = request.form.get("nombre")
+            edad = request.form.get("edad")
+            #session.execute("update personas set nombre, edad) values ('{}', '{}')".format(nombre, edad))
+            session.commit()
+        else:
+            print(request.form)
+            nombre = request.form.get("nombre")
+            edad = request.form.get("edad")
+            session.execute("insert into personas (nombre, edad) values ('{}', '{}')".format(nombre, edad))
+            session.commit()
     if request.method == "PUT":
-        pass
+        print("llego al put")
 
-    return render_template('forma.html')
+    return render_template('forma.html', valores=is_update)
 
 
 

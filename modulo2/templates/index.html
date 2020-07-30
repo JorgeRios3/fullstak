@@ -1,8 +1,8 @@
 <html>
     <head>
         <script>
-            function ejecutaforma(){
-                window.location.href = "http://127.0.0.1:5000/usuario";
+            function ejecutaforma(id){
+                window.location.href = "http://127.0.0.1:5000/usuario?usuario="+id;
             }
         </script>
     </head>
@@ -12,7 +12,7 @@
         {{valores.titulo}}
         <ul>
         {% for persona in valores.usuarios -%}
-            <li onclick="ejecutaforma()"> {{persona.id}} {{ persona.nombre }}</li>
+            <li onclick="ejecutaforma({{persona.id}})"> {{persona.id}} {{ persona.nombre }}</li>
         {% endfor %}
         </ul>
     </body>

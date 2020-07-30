@@ -2,7 +2,10 @@
     <head>
     </head>
     <body>
-        <form action="http://127.0.0.1:5000/usuario" method="post">
+        {% if valores %}
+         {{valores}}
+        {% endif %}
+        <form action="http://127.0.0.1:5000/usuario{{ '?usuario={}'.format(valores) if valores else '' }}" method='POST'>
             <label for="nombre">nombre</label>
             <input type="text" id="nombre" name="nombre"><br><br>
             <label for="edad">edad</label>

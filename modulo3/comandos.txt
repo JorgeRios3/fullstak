@@ -1,0 +1,50 @@
+instalar django
+
+pip install Django
+
+
+crear proyecto
+django-admin startproject myapp
+
+inspeccionar manage.py
+python manage.py --help
+
+correr servidor
+python manage.py runserver
+
+correr django shell
+python manage.py shell
+
+crear app
+python manage.py startapp viajes
+
+conectar base de datos
+archivo /myapp/myapp/settings.py
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',
+            'NAME': 'proyectox',
+            'USER': 'jorge.rios',
+            'PASSWORD': 'Macros3',
+            'HOST': 'localhost',
+            'PORT': '3306',
+    }
+}
+
+
+correr migraciones
+python manage.py migrate
+
+crear admin user
+python manage.py createsuperuser
+
+crear pagina index
+modificar urls.py principal
+dentro de app viajes crear ruta /templates/viajes
+crear archivo index.html
+
+
+
+
+
+
