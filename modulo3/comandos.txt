@@ -45,6 +45,39 @@ crear archivo index.html
 
 
 
+#para agregar una tabla partiendo de un modelo
+leer los archivos de models
+python manage.py makemigrations
+
+#aplicar migraciones (crear tablas o modificar tablas columnas etc.)
+python manage.py migrate
 
 
+find all
+all_entries = models.Persona.objects.all() #limit [:5]
+
+find by pk
+models.Persona.objects.get(pk=1)
+
+find con where
+models.Persona.objects.filter(nombre='jorge') 
+
+like
+models.Persona.objects.get(headline__contains='Lennon')
+
+join
+vals = models.Pago.objects.all().select_related('viaje')
+
+#formas
+crear un archivo forms.py
+importar la clase de formas
+crear una clase con el nombre de la forma
+pasar los campos con las validaciones de los campos
+
+#ejemplo
+from django import forms
+
+class NameForm(forms.Form):
+    nombre = forms.CharField(label='Your name', max_length=100)
+    apellidop = forms.CharField(label='Your name', max_length=100)
 

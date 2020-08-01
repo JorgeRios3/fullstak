@@ -1,0 +1,7 @@
+
+    <h2>Personas</h2>
+    <ul>
+        {% for persona in object_list %}
+            <li>{{ persona.nombre }} {{persona.apellido_paterno}}</li>
+        {% endfor %}
+    </ul>
