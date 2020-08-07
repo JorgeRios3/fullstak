@@ -6,8 +6,11 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
     </head>
     <body>
-        <button class="btn btn-info">aceptar</button>
-        index page {{nombre}} {{apellido}}
-        {{usuarios}}
+        {% if user.is_authenticated %}
+        <button class="btn btn-info"><a href="{% url 'logout' %}">Logout</a></button>
+        <br/>
+        <a href="{% url 'persona' %}">persona</a>     
+        {% endif %}
+        index page
     </body>
 </html>

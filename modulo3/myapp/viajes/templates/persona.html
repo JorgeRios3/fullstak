@@ -5,5 +5,10 @@
     {{ form.as_table }}
     </table>
     <input type="submit" value="Submit" />
+
+    {{perms.auth}}
+
+    <button class="btn btn-info"><a href="{% url 'logout' %}">Logout</a></button>
+
     
 </form>

@@ -1,0 +1,21 @@
+<div class="container">
+    <h2>Login</h2>
+    <form method="POST" action="{% url 'login' %}">{% csrf_token %}
+      <div class="form-group">
+        <label >Usuario</label>
+        <div class="input"><input type="text" name="username" required="required"></div>
+        <div class="clear"></div>
+    </div>
+    <div class="form-group">
+        <label >constraseña</label>
+        <div class="input"><input type="password" name="password" required="required"></div>
+        <div class="clear"></div>
+    </div>
+    <div class="form-group"> 
+      <label></label>
+        <div class="submit">
+          <button type="submit" class="btn-primary">Login</button>
+        </div>
+        <div class="clear"></div> </div>
+</form>
+</div>

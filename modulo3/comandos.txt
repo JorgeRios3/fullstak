@@ -81,3 +81,21 @@ class NameForm(forms.Form):
     nombre = forms.CharField(label='Your name', max_length=100)
     apellidop = forms.CharField(label='Your name', max_length=100)
 
+
+
+
+#autenticacion
+agregar a nuestro archivo views.py importacion del modelo de usuarios de django, y metodos de login y logout de django
+from django.contrib.auth.models import User
+from django.contrib.auth import authenticate, login as login_django, logout as logout_django
+
+crear nuestra ruta de login, y logout
+agregar metodos de loging, logout de django dentro de nuestras funciones
+
+
+#class based views
+importar en nuestro archivo de views
+from django.views import View
+
+modificar en settings la variable de login_url
+LOGIN_URL = 'login'
