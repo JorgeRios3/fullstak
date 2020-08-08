@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.http import HttpResponse, HttpResponseRedirect
+from django.http import HttpResponse, HttpResponseRedirect, JsonResponse
 from django.template import loader
 import sqlalchemy
 from sqlalchemy.orm import sessionmaker
@@ -17,6 +17,22 @@ from django.views import View
 from django.utils.decorators import method_decorator
 from django.views.decorators.csrf import csrf_exempt
 
+
+from rest_framework import serializers, viewsets
+from .serializers import PersonaSerializer, PagoSerializer
+
+from rest_framework.decorators import api_view
+from rest_framework.response import Response
+from django.http import Http404
+from rest_framework import status
+from rest_framework import permissions
+
+
+
+
+
+
+import json
 
 
 
@@ -140,4 +156,26 @@ class Vista(View):
     def delete(self, request):
         print("entro en metodo delete")
         return HttpResponse("regreso metodo delete")
+
+
+
+class PersonaViewSet(viewsets.ModelViewSet):
+    queryset = models.Persona.objects.all()
+    serializer_class = PersonaSerializer
+    #permission_classes = [permissions.IsAuthenticated]
+
+
+@api_view(['GET', 'POST'])
+def personas_list(request, pk=0):
+    if request.method == 'GET':
+        personas = models.Persona.objects.all()
+        serializer = PersonaSerializer(personas, many=True)
+        return Response(serializer.data)
+
+    elif request.method == 'POST':
+        serializer = PersonaSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 

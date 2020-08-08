@@ -26,8 +26,11 @@ class Viaje(models.Model):
 class Pago(models.Model):
     fecha = models.CharField(max_length=50)
     total = models.CharField(max_length=20)
-    persona = models.ForeignKey(Persona, on_delete=models.CASCADE)
+    persona = models.ForeignKey(Persona, related_name='pagos', on_delete=models.CASCADE)
     viaje = models.ForeignKey(Viaje, on_delete=models.CASCADE)
 
     class Meta:
         db_table = 'pagos'
+
+    def __str__(self):
+        return 'fecha {}'.format(self.total)

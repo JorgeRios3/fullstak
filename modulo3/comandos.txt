@@ -99,3 +99,11 @@ from django.views import View
 
 modificar en settings la variable de login_url
 LOGIN_URL = 'login'
+
+
+
+#rest framework
+instalar paquetes
+pip install djangorestframework
+pip install markdown       # Markdown support for the browsable API.
+pip install django-filter  # Filtering support
