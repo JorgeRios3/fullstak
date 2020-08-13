@@ -107,3 +107,183 @@ instalar paquetes
 pip install djangorestframework
 pip install markdown       # Markdown support for the browsable API.
 pip install django-filter  # Filtering support
+
+
+#graphql
+
+pip install graphene-django
+agregar a installed_apps graphene
+agregar ruta graphql en urls
+crear schema.py
+agregar query, mutations
+
+Query
+#queries 
+
+query {
+  allPersonas {
+    id
+    nombre
+  }
+}
+
+query {
+  allPagos {
+    id
+    total
+  }
+}
+
+query con join
+
+query {
+  allPagos {
+    id
+    total,
+   persona{
+    nombre
+  }
+  }
+}
+
+#query con parametros
+query{
+  personaByNombre(nombre:"artur"){
+    nombre,
+    id
+  }
+}
+
+
+Query2
+#usando relay
+
+query {
+  allPersonas {
+    edges {
+      node {
+        id,
+        nombre
+      }
+    }
+  }
+}
+
+query {
+  persona(id: 1) {
+    nombre, edad
+  }
+}
+
+query {
+  allPersonas {
+    edges {
+      node {
+        nombre,
+        pagos {
+          edges {
+            node {
+              total
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+
+Query3
+
+{
+    allPersonasSql {
+        pageInfo {
+        startCursor
+       endCursor
+        hasNextPage
+        hasPreviousPage
+        }
+      edges {
+        cursor
+        node {
+            id
+          nombre
+       }
+        }
+      
+    }
+}
+
+{
+    allPersonas {
+        pageInfo {
+        startCursor
+       endCursor
+        hasNextPage
+        hasPreviousPage
+        }
+      edges {
+        cursor
+        node {
+            id
+          nombre,
+          apellidoPaterno
+       }
+        }
+      
+    }
+}
+
+query {
+  persona(id:"UGVyc29uYVR5cGU6MQ=="){
+    nombre
+  }
+}
+
+
+---oo--
+
+query {
+  persona(id:1){
+    nombre
+  }
+}
+
+
+#mutations
+
+update
+
+mutation {
+  updateClient(nombre: "susanaaaaa", id: 1) {
+    persona {
+      nombre
+    }
+  }
+}
+
+create
+
+mutation add {
+    createPersona(nombre:"Peter", edad:12) {
+        persona {
+            nombre
+        }
+        
+    }
+}
+
+
+delete
+
+mutation add {
+    deletePersona(id:13) {
+    ok
+        
+    }
+}
+
+
+
+
+

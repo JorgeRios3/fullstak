@@ -7,6 +7,9 @@ class Persona(models.Model):
     apellido_materno = models.CharField(max_length=20, blank=True, null=True)
     edad = models.IntegerField()
 
+    def __str__(self):
+        return self.nombre
+
     class Meta:
         db_table = 'personas'
 
