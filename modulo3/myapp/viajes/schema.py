@@ -92,15 +92,15 @@ class Query3(graphene.ObjectType):
         return Persona.objects.all()
 
     def resolve_all_personas_sql(self, info, **kwargs):
-        uri = 'mysql+mysqldb://jorge.rios:Macros3@localhost:3306/proyectox'
-        engine = create_engine(uri)
-        conn = engine.connect().connection
-        session = sessionmaker(bind=engine)()
+        #uri = 'mysql+mysqldb://jorge.rios:Macros3@localhost:3306/proyectox'
+        #engine = create_engine(uri)
+        #conn = engine.connect().connection
+        #session = sessionmaker(bind=engine)()
         query = "select * from personas"
         my_vals = []
-        for x in session.execute(query):
+        #for x in session.execute(query):
 
-            my_vals.append(dict(id=x.id, nombre=x.nombre, apellido_paterno=x.apellido_paterno))
+        #    my_vals.append(dict(id=x.id, nombre=x.nombre, apellido_paterno=x.apellido_paterno))
             
         #return Client.objects.all()
         return my_vals
