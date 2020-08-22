@@ -118,7 +118,7 @@ def forma_viaje(request, id=0):
 class PersonaLista(ListView):
     model = models.Persona
 
-
+@csrf_exempt
 def login(request):
     if request.method == "POST":
         username = request.POST['username']
