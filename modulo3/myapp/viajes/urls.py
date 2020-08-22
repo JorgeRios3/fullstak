@@ -13,6 +13,7 @@ from .schema import schema
 
 router = routers.DefaultRouter()
 router.register(r'personas', otra.PersonaViewSet)
+router.register(r'people', otra.PersonaViewSet)
 
 urlpatterns = [
     path('', otra.index, name='index'),
@@ -20,6 +21,7 @@ urlpatterns = [
     path('persona', otra.forma_viaje, name='persona'),
     path('personas', otra.PersonaLista.as_view()),
     path('login', otra.login, name='login'),
+    path('jeje', otra.bio, name='jeje'),
     path('logout', otra.logout, name='logout'),
     path('vista', otra.Vista.as_view(), name="vista"),
     path('api/', include(router.urls)),

@@ -27,6 +27,9 @@ from django.http import Http404
 from rest_framework import status
 from rest_framework import permissions
 
+import redis
+r = redis.Redis(host='localhost', port=6379, db=0)
+
 
 
 
@@ -60,7 +63,22 @@ def index(request):
     #print(vals.viaje.descripcion)
     #return HttpResponse("pagina principal")
     if request.user.is_authenticated:
-        return render(request, "viajes/index.html")
+        nombre = request.GET["nombre"]
+        print("viendo nombre ", nombre)
+        query = "select nombre as nombre, edad as edad from personas where nombre='{}'".format(nombre)
+        print(query)
+        redis_val = r.get("{}".format(query))
+        print("viendo valor de redis", redis_val)
+        personas = []
+        if not redis_val:
+            print("yendo a base de datos")
+            for x in session.execute(query):
+                personas.append(dict(nombre=x.nombre, edad=x.edad))
+            r.set("{}".format(query), json.dumps(personas))
+        else:
+            print("trayendo de redis")
+            personas =  json.loads(redis_val)
+        return render(request, "viajes/index.html", {"prueba":"probando el", "personas":personas})
     return redirect('/login')
 
 #@login_required

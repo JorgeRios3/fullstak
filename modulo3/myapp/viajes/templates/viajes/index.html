@@ -12,5 +12,11 @@
         <a href="{% url 'persona' %}">persona</a>     
         {% endif %}
         index page
+        {{prueba}}
+        <ul>
+        {% for x in personas %}
+        <li>{{x}}</li>
+        {% endfor %}
+        </ul>
     </body>
 </html>
